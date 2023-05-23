@@ -28,13 +28,21 @@ public class UpdateServlet extends HttpServlet {
         pw.println("<head>");
         pw.println("<title>도서 수정</title>");
         pw.println("<style>");
-        pw.println("body {");
-        pw.println("display: flex;");
-        pw.println("justify-content: center;");
-        pw.println("align-items: center;");
-        pw.println("height: 100vh;");
-        pw.println("background-color: #f5f5f5;");
-        pw.println("}");
+        pw.println("@font-face {\n" +
+                "            font-family: 'HANAMDAUM';\n" +
+                "            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');\n" +
+                "            font-weight: 400;\n" +
+                "            font-style: normal;\n" +
+                "        }");
+        pw.println("body {\n" +
+                "            text-decoration: none;\n" +
+                "            font-family: 'HANAMDAUM', Arial, sans-serif;\n" +
+                "            display: flex;\n" +
+                "            justify-content: center;\n" +
+                "            align-items: center;\n" +
+                "            height: 100vh;\n" +
+                "            background-color: #f5f5f5;\n" +
+                "        }");
         pw.println("#regbox {\n" +
                 "            width: 400px;\n" + "height: 100vh;"+
                 "            background-color: #fff;\n" +
@@ -50,6 +58,7 @@ public class UpdateServlet extends HttpServlet {
         pw.println("label {");
         pw.println("  display: block;");
         pw.println("  margin-top: 10px;");
+        pw.println("  margin-bottom: 10px;");
         pw.println("}");
         pw.println("#regbox input[type='text'], textarea {");
         pw.println("width: 90%;\n" +
@@ -96,7 +105,15 @@ public class UpdateServlet extends HttpServlet {
                 "            content: \"\";\n" +
                 "        }");
         pw.println("input[type='text'] { width: 300px; padding: 5px; }");
-        pw.println("input[type='submit'] { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }");
+        pw.println("input[type='submit'] { " +
+                "background-color: #4CAF50; " +
+                "margin-top: 50px; " +
+                "color: white; " +
+                "padding: 10px 20px; " +
+                "border: none; " +
+                "cursor: pointer; " +
+                "margin-bottom: 15px;" +
+                "font-family: 'HANAMDAUM', Arial, sans-serif;}");
         pw.println("</style>");
         pw.println("</head>");
         pw.println("<body>");

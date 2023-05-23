@@ -25,8 +25,15 @@ public class ListServlet extends HttpServlet {
         pw.println("<head>");
         pw.println("<title>도서 목록</title>");
         pw.println("<style>");
+        pw.println("@font-face {\n" +
+                "            font-family: 'HANAMDAUM';\n" +
+                "            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');\n" +
+                "            font-weight: 400;\n" +
+                "            font-style: normal;\n" +
+                "        }");
         pw.println("body {\n" +
                 "            text-decoration: none;\n" +
+                "            font-family: 'HANAMDAUM', Arial, sans-serif;\n" +
                 "        }");
         pw.println("body::before {\n" +
                 "            position: fixed;\n" +
@@ -48,10 +55,11 @@ public class ListServlet extends HttpServlet {
         pw.println("table {");
         pw.println("  border-collapse: collapse;");
         pw.println("  border-style: none;");
-        pw.println("  width: 100%;");
+        pw.println("  width: 90%;");
         pw.println("  border-radius: 15px;"); //
         pw.println("  background-color: white;"); //
         pw.println("  opacity: 0.7;");
+        pw.println("  margin: auto;");
         pw.println("  margin-top: 20px;");
         pw.println("}");
         pw.println("th {");
@@ -66,6 +74,15 @@ public class ListServlet extends HttpServlet {
         pw.println("  padding: 8px;");
         pw.println("  text-align: left;");
         pw.println("}");
+        pw.println("td a {" +
+                "text-decoration: none;" +
+                "color: black}");
+        pw.println("td a:hover {" +
+                "color: blue;" +
+                "transition: 0.3s ease-in;}");
+        pw.println(".delete_btn:hover{" +
+                "color: red;" +
+                "transition: 0.3s ease-in;}");
         pw.println("tr:nth-child(even) {");
         pw.println("  background-color: white;");
         pw.println("}");
@@ -79,11 +96,13 @@ public class ListServlet extends HttpServlet {
         pw.println("}");
         pw.println(".search-form select, .search-form input[type='submit'] {");
         pw.println("  padding: 5px;");
+        pw.println("font-family: 'HANAMDAUM', Arial, sans-serif;");
         pw.println("}");
         pw.println(".search-form input[type='text'] {");
         pw.println("  padding: 10px;");
-
+        pw.println("font-family: 'HANAMDAUM', Arial, sans-serif;");
         pw.println("}");
+
         pw.println(".action-buttons {");
         pw.println("  display: flex;");
         pw.println("  justify-content: flex-end;");
@@ -105,7 +124,8 @@ public class ListServlet extends HttpServlet {
                 "  outline: none;\n" +
                 "  padding-left: 10px;\n" +
                 "  background-color: rgb(233, 233, 233);\n" +
-                "}");
+                "font-family: 'HANAMDAUM', Arial, sans-serif;" +
+        "}");
         pw.println(".button-container button {");
         pw.println("  padding: 10px 20px;");
         pw.println("  font-size: 16px;");
@@ -114,9 +134,12 @@ public class ListServlet extends HttpServlet {
         pw.println("  border-radius: 4px;");
         pw.println("  color: white;");
         pw.println("  cursor: pointer;");
+        pw.println("  margin-left: 10px;");
+        pw.println("font-family: 'HANAMDAUM', Arial, sans-serif;");
         pw.println("}");
-        pw.println("h1 { text-align: center; }");
-
+        pw.println("h1 { text-align: center; margin-top: 10px;}");
+        pw.println("h1:hover { color: blue; " +
+                "transition: 0.3s ease-in;}");
         pw.println(".button-container {");
         pw.println("  display: flex;");
         pw.println("  justify-content: flex-end;");
@@ -130,9 +153,12 @@ public class ListServlet extends HttpServlet {
         pw.println("  background-color: #4caf50;");
         pw.println("  color: white;");
         pw.println("  cursor: pointer;");
+        pw.println("  margin-right: 10px;");
+        pw.println("font-family: 'HANAMDAUM', Arial, sans-serif;");
         pw.println("}");
         pw.println(".button-container button:hover {");
         pw.println("  background-color: #4caf50;");
+        pw.println("transition: 0.3s ease-in;");
         pw.println("}");
 
         pw.println(".search-button {\n" +
@@ -197,7 +223,10 @@ public class ListServlet extends HttpServlet {
         pw.println("</head>");
         pw.println("<body>");
 
-        pw.println("<h1 onclick='goToList()' style='text-decoration: underline; cursor: pointer;'>도서 목록</h1>");
+        pw.println("<h1 onclick='goToList()' " +
+                "style='text-decoration: none; " +
+
+                "cursor: pointer;'>도서 목록</h1>");
 
         pw.println("<div class='search-form'>");
         pw.println("<form action='/search' method='GET'>");
@@ -242,14 +271,14 @@ public class ListServlet extends HttpServlet {
 
         for (Library library : libraryList) {
             pw.println("<tr>");
-            pw.println("<td><a href='/list/" + library.getId() + "'>" + library.getName() + "</a></td>");
+            pw.println("<td><a href='/list/" + library.getId() + "' class=\"title\">" + library.getName() + "</a></td>");
             pw.println("<td>" + library.getAuthor() + "</td>");
             pw.println("<td>" + library.getPublisher() + "</td>");
             pw.println("<td>" + library.getReleaseYear() + "년" + "</td>");
             pw.println("<td>" + library.getCount() + "권" + "</td>");
 
             pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
-            pw.println("<td><a href='delete?id=" + library.getId() + "'>삭제</a></td>");
+            pw.println("<td><a href='delete?id=" + library.getId() + "' class=\"delete_btn\">삭제</a></td>");
 
             pw.println("</tr>");
         }

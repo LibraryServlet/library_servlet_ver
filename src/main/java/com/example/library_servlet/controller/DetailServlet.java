@@ -40,6 +40,16 @@ public class DetailServlet extends HttpServlet {
         pw.println("<head>");
         pw.println("<title>도서 상세 정보</title>");
         pw.println("<style>");
+        pw.println("@font-face {\n" +
+                "            font-family: 'HANAMDAUM';\n" +
+                "            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');\n" +
+                "            font-weight: 400;\n" +
+                "            font-style: normal;\n" +
+                "        }");
+        pw.println("body {\n" +
+                "            text-decoration: none;\n" +
+                "            font-family: 'HANAMDAUM', Arial, sans-serif;\n" +
+                "        }");
         pw.println("body::before {\n" +
                 "            position: fixed;\n" +
                 "            top: 0;\n" +
@@ -85,13 +95,14 @@ public class DetailServlet extends HttpServlet {
         pw.println("  max-height: 300px;");
         pw.println("  margin: 0 auto;");
         pw.println("}");
-        pw.println("h1 { text-align: center; }");
+        pw.println("h1 { text-align: center; margin-top: 10px;}");
+
         pw.println(".button-container {");
         pw.println("  display: flex;");
         pw.println("  justify-content: center;");
         pw.println("  margin-top: 20px;");
         pw.println("}");
-        pw.println(".button-container button {");
+        pw.println(".button-container button, .count {");
         pw.println("  margin: 0 10px;");
         pw.println("  padding: 10px 20px;");
         pw.println("  border: none;");
@@ -99,6 +110,7 @@ public class DetailServlet extends HttpServlet {
         pw.println("  background-color: #4CAF50;");
         pw.println("  color: white;");
         pw.println("  cursor: pointer;");
+        pw.println("font-family: 'HANAMDAUM', Arial, sans-serif;");
         pw.println("}");
         pw.println(".button-container button:hover {");
         pw.println("  background-color: #45a049;");
@@ -118,8 +130,8 @@ public class DetailServlet extends HttpServlet {
             pw.println("<tr><th>출시연도</th><td>" + library.getReleaseYear() + "년" + "</td></tr>");
             pw.println("<tr><th>수량</th><td>");
             pw.println(library.getCount() + "권");
-            pw.println("<button onclick='countPlus(" + library.getId() + ")'>+</button>");
-            pw.println("<button onclick='countMinus(" + library.getId() + ")'>-</button>");
+            pw.println("<button class=\"count\" onclick='countPlus(" + library.getId() + ")'>+</button>");
+            pw.println("<button class=\"count\" onclick='countMinus(" + library.getId() + ")'>-</button>");
             pw.println("</td></tr>");
             pw.println("<tr><th>요약</th><td>" + library.getSummary() + "</td></tr>");
             pw.println("<tr><th>표지</th><td class='image-container'><img src='" + library.getImage() + "'></td></tr>");

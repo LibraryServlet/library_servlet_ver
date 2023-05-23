@@ -41,7 +41,7 @@ public class SortServlet extends HttpServlet {
 
     private void sortByYear(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Library> libraryList = libraryService.findAll();
-        libraryList.sort(Comparator.comparingInt(Library::getReleaseYear));
+        libraryList.sort(Comparator.comparingInt(Library::getReleaseYear).reversed());
 
         request.setAttribute("sortedLibraryList", libraryList);
         request.getRequestDispatcher("/list").forward(request, response);

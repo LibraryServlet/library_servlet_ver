@@ -4,17 +4,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
     <title>도서 관리</title>
     <style>
+        @font-face {
+            font-family: 'HANAMDAUM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
         body {
             background-color: #f2f2f2;
             background-image: url("https://ifh.cc/g/KMY6r2.jpg");
             background-size: cover;
-            font-family: Arial, sans-serif;
+            font-family: 'HANAMDAUM', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        .welcome{
+
+        .welcome {
             float: right;
             margin-top: 100px;
             border: red;
@@ -43,6 +51,7 @@
 
         li a:hover {
             background-color: #45a049;
+            transition: 0.3s ease-in;
         }
     </style>
 </head>

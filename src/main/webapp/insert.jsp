@@ -5,6 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>도서 추가</title>
     <style>
+        @font-face {
+            font-family: 'HANAMDAUM';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+        body {
+            font-family: 'HANAMDAUM', Arial, sans-serif;
+        }
         body::before {
             position: fixed;
             top: 0;
@@ -35,6 +44,7 @@
         label {
             display: block;
             margin-bottom: 10px;
+            margin-top: 10px;
             color: #333;
         }
 
@@ -47,8 +57,11 @@
             outline: none;
             padding-left: 10px;
             background-color: rgb(233, 233, 233);
+            font-family: 'HANAMDAUM', Arial, sans-serif;
         }
-
+        .btn-container{
+            margin: 0 auto;
+        }
         input[type="submit"],
         input[type="reset"] {
             padding: 5px 10px;
@@ -58,6 +71,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-family: 'HANAMDAUM', Arial, sans-serif;
         }
 
         input[type="submit"]:hover,
@@ -94,8 +108,10 @@
         <input type="text" name="image" required/><br/>
         <label for="category">카테고리</label>
         <input type="text" name="category" required/><br/>
+        <div class="btn-container">
         <input type="submit" value="추가">
         <input type="reset" value="취소" onclick="goBack()"/>
+        </div>
     </div>
 </form>
 </body>
