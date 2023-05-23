@@ -56,6 +56,10 @@ public class LibraryService {
         libraryRepository.deleteById(id);
     }
 
+    public void updateLibrary(Library lib){
+        libraryRepository.updateLibrary(lib);
+    }
+
     public void updateSummary(Long id, String summary) {
         libraryRepository.updateSummary(id, summary);
     }
