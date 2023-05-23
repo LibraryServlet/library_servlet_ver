@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/detail")
+@WebServlet("/list/*")
 public class DetailServlet extends HttpServlet {
     private final LibraryService libraryService = new LibraryService();
 
@@ -31,6 +31,14 @@ public class DetailServlet extends HttpServlet {
         pw.println("  border: 1px solid black;");
         pw.println("  padding: 8px;");
         pw.println("  text-align: left;");
+        pw.println("}");
+        pw.println(".go-back-button {");
+        pw.println("  padding: 10px 20px;");
+        pw.println("  font-size: 16px;");
+        pw.println("  background-color: #f2f2f2;");
+        pw.println("  border: none;");
+        pw.println("  border-radius: 4px;");
+        pw.println("  cursor: pointer;");
         pw.println("}");
         pw.println("</style>");
         pw.println("</head>");
@@ -53,7 +61,12 @@ public class DetailServlet extends HttpServlet {
         }
 
         pw.println("<br>");
-        pw.println("<a href='/'>메인페이지로 이동</a>");
+        pw.println("<button class='go-back-button' onclick='goBack()'>뒤로 가기</button>");
+        pw.println("<script>");
+        pw.println("function goBack() {");
+        pw.println("  window.history.back();");
+        pw.println("}");
+        pw.println("</script>");
 
         pw.println("</body>");
         pw.println("</html>");

@@ -63,6 +63,12 @@ public class ListServlet extends HttpServlet {
         pw.println("}");
         pw.println("</style>");
 
+        pw.println("<script>");
+        pw.println("function goToMainPage() {");
+        pw.println("  window.location.href = '/';");
+        pw.println("}");
+        pw.println("</script>");
+
         pw.println("</head>");
         pw.println("<body>");
 
@@ -114,7 +120,7 @@ public class ListServlet extends HttpServlet {
 
         pw.println("</table>");
         pw.println("<br>");
-        pw.println("<a href='/'>메인페이지로 이동</a>");
+        pw.println("<button onclick='goToMainPage()'>메인페이지</button>");
 
         pw.println("</body>");
         pw.println("</html>");
