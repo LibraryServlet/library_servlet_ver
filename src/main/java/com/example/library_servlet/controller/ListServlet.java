@@ -243,8 +243,8 @@ public class ListServlet extends HttpServlet {
         pw.println("</div>");
 
         pw.println("<div class='button-container'>");
-        pw.println("<button onclick='sortByName()'>이름 정렬</button>");
-        pw.println("<button onclick='sortByYear()'>연도 정렬</button>");
+        pw.println("<button onclick='sortByName()'>이름순</button>");
+        pw.println("<button onclick='sortByYear()'>최신순</button>");
         pw.println("</div>");
 
         pw.println("<table>");
