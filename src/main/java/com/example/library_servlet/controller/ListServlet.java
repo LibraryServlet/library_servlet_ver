@@ -95,12 +95,15 @@ public class ListServlet extends HttpServlet {
         pw.println("function goToMainPage() {");
         pw.println("  window.location.href = '/';");
         pw.println("}");
+        pw.println("function goToList() {");
+        pw.println("  window.location.href = '/list';");
+        pw.println("}");
         pw.println("</script>");
 
         pw.println("</head>");
         pw.println("<body>");
 
-        pw.println("<h1>도서 목록</h1>");
+        pw.println("<h1 onclick='goToList()' style='text-decoration: underline; cursor: pointer;'>도서 목록</h1>");
 
         pw.println("<div class='search-form'>");
         pw.println("<form action='/search' method='GET'>");
