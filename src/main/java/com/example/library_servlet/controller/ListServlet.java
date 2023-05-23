@@ -73,20 +73,20 @@ public class ListServlet extends HttpServlet {
 
         pw.println(".button-container {");
         pw.println("  display: flex;");
-        pw.println("  justify-content: center;");
+        pw.println("  justify-content: flex-end;");
         pw.println("  margin-top: 20px;");
         pw.println("}");
         pw.println(".button-container button {");
-        pw.println("  margin: 0 10px;");
-        pw.println("  padding: 10px 20px;");
+        pw.println("  margin-left: 5px;");
+        pw.println("  padding: 5px;");
         pw.println("  border: none;");
         pw.println("  border-radius: 4px;");
-        pw.println("  background-color: #4CAF50;");
+        pw.println("  background-color: #3f51b5;");
         pw.println("  color: white;");
         pw.println("  cursor: pointer;");
         pw.println("}");
         pw.println(".button-container button:hover {");
-        pw.println("  background-color: #45a049;");
+        pw.println("  background-color: #303f9f;");
         pw.println("}");
 
         pw.println("</style>");
@@ -97,6 +97,12 @@ public class ListServlet extends HttpServlet {
         pw.println("}");
         pw.println("function goToList() {");
         pw.println("  window.location.href = '/list';");
+        pw.println("}");
+        pw.println("function sortByName() {");
+        pw.println("  window.location.href = '/sort?type=name';");
+        pw.println("}");
+        pw.println("function sortByYear() {");
+        pw.println("  window.location.href = '/sort?type=year';");
         pw.println("}");
         pw.println("</script>");
 
@@ -119,11 +125,17 @@ public class ListServlet extends HttpServlet {
         pw.println("</form>");
         pw.println("</div>");
 
+        pw.println("<div class='action-buttons'>");
+        pw.println("<button onclick='sortByName()'>이름 정렬</button>");
+        pw.println("<button onclick='sortByYear()'>연도 정렬</button>");
+        pw.println("</div>");
+
         pw.println("<table>");
         pw.println("<tr>");
         pw.println("<th>이름</th>");
         pw.println("<th>저자</th>");
         pw.println("<th>출판사</th>");
+        pw.println("<th>출시 연도</th>");
         pw.println("<th>수량</th>");
         pw.println("<th>삭제</th>");
         pw.println("</tr>");
@@ -132,8 +144,12 @@ public class ListServlet extends HttpServlet {
 
         if (request.getAttribute("searchResults") == null) {
             libraryList = libraryService.findAll();
-        } else {
+        } else if(request.getAttribute("searchResults")!=null){
             libraryList = (List<Library>) request.getAttribute("searchResults");
+        }
+
+        if (request.getAttribute("sortedLibraryList") != null) {
+            libraryList = (List<Library>) request.getAttribute("sortedLibraryList");
         }
 
         for (Library library : libraryList) {
@@ -141,6 +157,7 @@ public class ListServlet extends HttpServlet {
             pw.println("<td><a href='/list/" + library.getId() + "'>" + library.getName() + "</a></td>");
             pw.println("<td>" + library.getAuthor() + "</td>");
             pw.println("<td>" + library.getPublisher() + "</td>");
+            pw.println("<td>" + library.getReleaseYear() + "년" + "</td>");
             pw.println("<td>" + library.getCount() + "권" + "</td>");
 
             pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
@@ -150,7 +167,7 @@ public class ListServlet extends HttpServlet {
         }
 
         pw.println("</table>");
-        pw.println("<br>");
+
         pw.println("<div class='button-container'>");
         pw.println("<button class='main-page-button' onclick='goToMainPage()'>메인페이지</button>");
         pw.println("</div>");
