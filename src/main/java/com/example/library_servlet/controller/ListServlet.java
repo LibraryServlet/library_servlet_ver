@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @WebServlet("/list")
@@ -60,6 +59,14 @@ public class ListServlet extends HttpServlet {
         pw.println("}");
         pw.println(".quantity-input {");
         pw.println("  width: 60px;");
+        pw.println("}");
+        pw.println(".main-page-button {");
+        pw.println("  padding: 10px 20px;");
+        pw.println("  font-size: 16px;");
+        pw.println("  background-color: #f2f2f2;");
+        pw.println("  border: none;");
+        pw.println("  border-radius: 4px;");
+        pw.println("  cursor: pointer;");
         pw.println("}");
         pw.println("</style>");
 
@@ -120,7 +127,7 @@ public class ListServlet extends HttpServlet {
 
         pw.println("</table>");
         pw.println("<br>");
-        pw.println("<button onclick='goToMainPage()'>메인페이지</button>");
+        pw.println("<button class='main-page-button' onclick='goToMainPage()'>메인페이지</button>");
 
         pw.println("</body>");
         pw.println("</html>");
