@@ -5,12 +5,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>도서 추가</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f5f5f5;
+        body::before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("https://ifh.cc/g/KMY6r2.jpg");
+            background-size: cover;
+            -webkit-filter: blur(5px);
+            -moz-filter: blur(5px);
+            -o-filter: blur(5px);
+            -ms-filter: blur(5px);
+            filter: blur(5px);
+            transform: scale(1.02);
+            z-index: -1;
+            content: "";
         }
 
         #regbox {
@@ -19,6 +29,7 @@
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin: auto;
         }
 
         label {

@@ -58,6 +58,27 @@ public class UpdateServlet extends HttpServlet {
         pw.println("  border-radius: 4px;");
         pw.println("  color: white;");
         pw.println("}");
+        pw.println("<style>");
+        pw.println("label { font-weight: bold; }");
+        pw.println("body::before {\n" +
+                "            position: fixed;\n" +
+                "            top: 0;\n" +
+                "            left: 0;\n" +
+                "            right: 0;\n" +
+                "            bottom: 0;\n" +
+                "            background-image: url(\"https://ifh.cc/g/KMY6r2.jpg\");\n" +
+                "            background-size: cover;\n" +
+                "            -webkit-filter: blur(5px);\n" +
+                "            -moz-filter: blur(5px);\n" +
+                "            -o-filter: blur(5px);\n" +
+                "            -ms-filter: blur(5px);\n" +
+                "            filter: blur(5px);\n" +
+                "            transform: scale(1.02);\n" +
+                "            z-index: -1;\n" +
+                "            content: \"\";\n" +
+                "        }");
+        pw.println("input[type='text'] { width: 300px; padding: 5px; }");
+        pw.println("input[type='submit'] { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }");
         pw.println("</style>");
         pw.println("</head>");
         pw.println("<body>");

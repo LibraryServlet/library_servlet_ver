@@ -40,16 +40,39 @@ public class DetailServlet extends HttpServlet {
         pw.println("<head>");
         pw.println("<title>도서 상세 정보</title>");
         pw.println("<style>");
+        pw.println("body::before {\n" +
+                "            position: fixed;\n" +
+                "            top: 0;\n" +
+                "            left: 0;\n" +
+                "            right: 0;\n" +
+                "            bottom: 0;\n" +
+                "            background-image: url(\"https://ifh.cc/g/KMY6r2.jpg\");\n" +
+                "            background-size: cover;\n" +
+                "            -webkit-filter: blur(5px);\n" +
+                "            -moz-filter: blur(5px);\n" +
+                "            -o-filter: blur(5px);\n" +
+                "            -ms-filter: blur(5px);\n" +
+                "            filter: blur(5px);\n" +
+                "            transform: scale(1.02);\n" +
+                "            z-index: -1;\n" +
+                "            content: \"\";\n" +
+                "        }");
         pw.println("table {");
         pw.println("  border-collapse: collapse;");
         pw.println("  width: 80%;");
         pw.println("  margin: 0 auto;");
         pw.println("  background-color: #f9f9f9;");
+        pw.println("  opacity: 0.8;");
         pw.println("}");
-        pw.println("th, td {");
+        pw.println("td {");
         pw.println("  border: 1px solid black;");
         pw.println("  padding: 12px;");
         pw.println("  text-align: left;");
+        pw.println("}");
+        pw.println("th {");
+        pw.println("  border: 1px solid black;");
+        pw.println("  padding: 17px;");
+        pw.println("  text-align: center;");
         pw.println("}");
         pw.println(".image-container {");
         pw.println("  display: flex;");

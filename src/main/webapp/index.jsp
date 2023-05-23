@@ -6,11 +6,18 @@
     <style>
         body {
             background-color: #f2f2f2;
+            background-image: url("https://ifh.cc/g/KMY6r2.jpg");
+            background-size: cover;
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+        }
+        .welcome{
+            float: right;
+            margin-top: 100px;
+            border: red;
         }
 
         ul {
@@ -20,8 +27,8 @@
         }
 
         li {
-            display: inline-block;
             margin-right: 10px;
+            margin-bottom: 10px;
         }
 
         li a {
@@ -31,6 +38,7 @@
             color: #fff;
             text-decoration: none;
             border-radius: 4px;
+            text-align: center;
         }
 
         li a:hover {
@@ -39,9 +47,12 @@
     </style>
 </head>
 <body>
-<ul>
-    <li><a href="insert.jsp">도서 추가</a></li>
-    <li><a href="list">도서 목록</a></li>
-</ul>
+<div class="welcome">
+    <h1>환영합니다!</h1>
+    <ul>
+        <li><a href="insert.jsp">도서 추가</a></li>
+        <li><a href="list">도서 목록</a></li>
+    </ul>
+</div>
 </body>
 </html>
