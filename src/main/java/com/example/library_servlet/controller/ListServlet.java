@@ -1,5 +1,6 @@
 package com.example.library_servlet.controller;
 
+import com.example.library_servlet.domain.Library;
 import com.example.library_servlet.service.LibraryService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ListServlet extends HttpServlet {
     private final LibraryService libraryService = new LibraryService();
@@ -36,8 +38,8 @@ public class ListServlet extends HttpServlet {
         pw.println("</style>");
 
         pw.println("<script>");
-        pw.println("function submitForm(userId) {");
-        pw.println("  document.getElementById('updateForm' + userId).submit();");
+        pw.println("function submitForm(id) {");
+        pw.println("  document.getElementById('updateForm' + id).submit();");
         pw.println("}");
         pw.println("</script>");
 
@@ -52,17 +54,17 @@ public class ListServlet extends HttpServlet {
         pw.println("<th>수정</th>");
         pw.println("</tr>");
 
-        LinkedList<User> userList = userRepository.getUserList();
+        List<Library> libraryList = libraryService.findAll();
 
-        for (User user : userList) {
+        for (Library library : libraryList) {
             pw.println("<tr>");
-            pw.println("<td>" + user.getName() + "</td>");
-            pw.println("<td><a href='delete?id=" + user.getId() + "'>삭제</a></td>");
+            pw.println("<td>" + library.getName() + "</td>");
+            pw.println("<td><a href='delete?id=" + library.getId() + "'>삭제</a></td>");
 
             pw.println("<td>");
-            pw.println("<a href='#' onclick='submitForm(" + user.getId() + ")'>수정</a>");
-            pw.println("<form id='updateForm" + user.getId() + "' method='post' action='updateok' style='display:none;'>");
-            pw.println("<input type='hidden' name='id' value='" + user.getId() + "'/>");
+            pw.println("<a href='#' onclick='submitForm(" + library.getId() + ")'>수정</a>");
+            pw.println("<form id='updateForm" + library.getId() + "' method='post' action='updateok' style='display:none;'>");
+            pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
             pw.println("<input type='hidden' name='updateName' value='독수리'/>");
             pw.println("</form>");
             pw.println("</td>");

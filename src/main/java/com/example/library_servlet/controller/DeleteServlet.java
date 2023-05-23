@@ -17,7 +17,7 @@ public class DeleteServlet extends HttpServlet {
         Long id = Long.parseLong(request.getParameter("id"));
         response.setContentType("text/html;charset=euc-kr");
 
-        userRepository.deleteUser(id);
+        libraryService.deleteById(id);
 
         response.sendRedirect("list");
     }

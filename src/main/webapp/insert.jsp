@@ -10,24 +10,28 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #f5f5f5;
         }
 
         #regbox {
-            width: 300px;
-            background-color: #f2f2f2;
+            width: 400px;
+            background-color: #fff;
             padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         label {
             display: block;
-            width: 100px;
-            float: left;
+            margin-bottom: 10px;
             color: #333;
         }
 
         input[type="text"] {
-            width: 180px;
+            width: 100%;
             padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         input[type="submit"],
@@ -37,6 +41,7 @@
             background-color: #4caf50;
             color: #fff;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
         }
 
@@ -53,47 +58,30 @@
 </head>
 <body>
 <form method="get" action="insert">
-    <fieldset id="regbox">
-        <%--@declare id="name"--%><%--@declare id="author"--%><%--@declare id="publisher"--%><%--@declare id="isbn"--%><%--@declare id="releaseyear"--%><%--@declare id="count"--%><%--@declare id="summary"--%><%--@declare id="image"--%><%--@declare id="category"--%><legend style="color: #555;">도서 추가</legend>
+    <div id="regbox">
+        <%--@declare id="name"--%><%--@declare id="author"--%><%--@declare id="publisher"--%><%--@declare id="isbn"--%><%--@declare id="releaseyear"--%><%--@declare id="count"--%><%--@declare id="summary"--%><%--@declare id="image"--%><%--@declare id="category"--%>
+        <h2 style="color: #555;">도서 추가</h2>
         <label for="name">책 이름</label>
-        <label>
-            <input type="text" name="name"/>
-        </label><br/>
+        <input type="text" name="name" required/><br/>
         <label for="author">작가</label>
-        <label>
-            <input type="text" name="author"/>
-        </label><br/>
+        <input type="text" name="author" required/><br/>
         <label for="publisher">출판사</label>
-        <label>
-            <input type="text" name="publisher"/>
-        </label><br/>
+        <input type="text" name="publisher" required/><br/>
         <label for="isbn">ISBN</label>
-        <label>
-            <input type="text" name="isbn"/>
-        </label><br/>
+        <input type="text" name="isbn" required/><br/>
         <label for="releaseYear">출판 연도</label>
-        <label>
-            <input type="text" name="releaseYear"/>
-        </label><br/>
+        <input type="text" name="releaseYear" required/><br/>
         <label for="count">수량</label>
-        <label>
-            <input type="text" name="count"/>
-        </label><br/>
+        <input type="text" name="count" required/><br/>
         <label for="summary">요약</label>
-        <label>
-            <input type="text" name="summary"/>
-        </label><br/>
+        <input type="text" name="summary" required/><br/>
         <label for="image">이미지</label>
-        <label>
-            <input type="text" name="image"/>
-        </label><br/>
+        <input type="text" name="image" required/><br/>
         <label for="category">카테고리</label>
-        <label>
-            <input type="text" name="category"/>
-        </label><br/>
+        <input type="text" name="category" required/><br/>
         <input type="submit" value="추가">
         <input type="reset" value="취소" onclick="goBack()"/>
-    </fieldset>
+    </div>
 </form>
 </body>
 </html>
