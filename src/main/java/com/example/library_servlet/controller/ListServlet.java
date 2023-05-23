@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
 import java.util.List;
 
 public class ListServlet extends HttpServlet {
@@ -35,11 +34,50 @@ public class ListServlet extends HttpServlet {
         pw.println("tr:nth-child(even) {");
         pw.println("  background-color: #f2f2f2;");
         pw.println("}");
+        pw.println(".search-form {");
+        pw.println("  display: flex;");
+        pw.println("  justify-content: flex-end;");
+        pw.println("  align-items: center;");
+        pw.println("}");
+        pw.println(".search-form label {");
+        pw.println("  margin-right: 10px;");
+        pw.println("}");
+        pw.println(".search-form select, .search-form input[type='submit'] {");
+        pw.println("  padding: 5px;");
+        pw.println("}");
+        pw.println(".action-buttons {");
+        pw.println("  display: flex;");
+        pw.println("  justify-content: flex-end;");
+        pw.println("  align-items: center;");
+        pw.println("}");
+        pw.println(".action-buttons button {");
+        pw.println("  margin-left: 5px;");
+        pw.println("  padding: 5px;");
+        pw.println("}");
+        pw.println(".quantity-input {");
+        pw.println("  width: 60px;");
+        pw.println("}");
         pw.println("</style>");
 
         pw.println("<script>");
         pw.println("function submitForm(id) {");
         pw.println("  document.getElementById('updateForm' + id).submit();");
+        pw.println("}");
+
+        pw.println("function increaseQuantity(id) {");
+        pw.println("  var quantityInput = document.getElementById('quantity' + id);");
+        pw.println("  var quantity = parseInt(quantityInput.value);");
+        pw.println("  quantity += 1;");
+        pw.println("  quantityInput.value = quantity;");
+        pw.println("}");
+
+        pw.println("function decreaseQuantity(id) {");
+        pw.println("  var quantityInput = document.getElementById('quantity' + id);");
+        pw.println("  var quantity = parseInt(quantityInput.value);");
+        pw.println("  if (quantity > 0) {");
+        pw.println("    quantity -= 1;");
+        pw.println("    quantityInput.value = quantity;");
+        pw.println("  }");
         pw.println("}");
         pw.println("</script>");
 
@@ -47,11 +85,29 @@ public class ListServlet extends HttpServlet {
         pw.println("<body>");
 
         pw.println("<h1>사용자 목록</h1>");
+
+        pw.println("<div class='search-form'>");
+        pw.println("<form action='/search' method='GET'>");
+        pw.println("<label for='search-category'>검색 항목:</label>");
+        pw.println("<select id='search-category' name='category'>");
+        pw.println("<option value='title'>책 이름</option>");
+        pw.println("<option value='author'>저자</option>");
+        pw.println("<option value='publisher'>출판사</option>");
+        pw.println("<option value='isbn'>ISBN</option>");
+        pw.println("</select>");
+        pw.println("<input type='text' name='search' placeholder='검색어'/>");
+        pw.println("<input type='submit' value='검색'/>");
+        pw.println("</form>");
+        pw.println("</div>");
+
         pw.println("<table>");
         pw.println("<tr>");
         pw.println("<th>이름</th>");
-        pw.println("<th>삭제</th>");
+        pw.println("<th>저자</th>");
+        pw.println("<th>출판사</th>");
+        pw.println("<th>수량</th>");
         pw.println("<th>수정</th>");
+        pw.println("<th>삭제</th>");
         pw.println("</tr>");
 
         List<Library> libraryList = libraryService.findAll();
@@ -59,15 +115,16 @@ public class ListServlet extends HttpServlet {
         for (Library library : libraryList) {
             pw.println("<tr>");
             pw.println("<td>" + library.getName() + "</td>");
-            pw.println("<td><a href='delete?id=" + library.getId() + "'>삭제</a></td>");
+            pw.println("<td>" + library.getAuthor() + "</td>");
+            pw.println("<td>" + library.getPublisher() + "</td>");
+            pw.println("<td>" + library.getCount() + "권" + "</td>");
 
             pw.println("<td>");
             pw.println("<a href='#' onclick='submitForm(" + library.getId() + ")'>수정</a>");
             pw.println("<form id='updateForm" + library.getId() + "' method='post' action='updateok' style='display:none;'>");
             pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
-            pw.println("<input type='hidden' name='updateName' value='독수리'/>");
-            pw.println("</form>");
-            pw.println("</td>");
+
+            pw.println("<td><a href='delete?id=" + library.getId() + "'>삭제</a></td>");
 
             pw.println("</tr>");
         }
