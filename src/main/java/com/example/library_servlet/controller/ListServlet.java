@@ -23,7 +23,7 @@ public class ListServlet extends HttpServlet {
         PrintWriter pw = response.getWriter();
         pw.println("<html>");
         pw.println("<head>");
-        pw.println("<title>사용자 목록</title>");
+        pw.println("<title>도서 목록</title>");
         pw.println("<style>");
         pw.println("table {");
         pw.println("  border-collapse: collapse;");
@@ -63,23 +63,47 @@ public class ListServlet extends HttpServlet {
         pw.println(".main-page-button {");
         pw.println("  padding: 10px 20px;");
         pw.println("  font-size: 16px;");
-        pw.println("  background-color: #f2f2f2;");
+        pw.println("  background-color: #4CAF50;");
         pw.println("  border: none;");
         pw.println("  border-radius: 4px;");
+        pw.println("  color: white;");
         pw.println("  cursor: pointer;");
         pw.println("}");
+        pw.println("h1 { text-align: center; }");
+
+        pw.println(".button-container {");
+        pw.println("  display: flex;");
+        pw.println("  justify-content: center;");
+        pw.println("  margin-top: 20px;");
+        pw.println("}");
+        pw.println(".button-container button {");
+        pw.println("  margin: 0 10px;");
+        pw.println("  padding: 10px 20px;");
+        pw.println("  border: none;");
+        pw.println("  border-radius: 4px;");
+        pw.println("  background-color: #4CAF50;");
+        pw.println("  color: white;");
+        pw.println("  cursor: pointer;");
+        pw.println("}");
+        pw.println(".button-container button:hover {");
+        pw.println("  background-color: #45a049;");
+        pw.println("}");
+
         pw.println("</style>");
 
         pw.println("<script>");
         pw.println("function goToMainPage() {");
         pw.println("  window.location.href = '/';");
         pw.println("}");
+        pw.println("function goToList() {");
+        pw.println("  window.location.href = '/list';");
+        pw.println("}");
         pw.println("</script>");
 
         pw.println("</head>");
         pw.println("<body>");
 
-        pw.println("<h1>사용자 목록</h1>");
+        pw.println("<h1 onclick='goToList()' style='text-decoration: underline; cursor: pointer;'>도서 목록</h1>");
 
         pw.println("<div class='search-form'>");
         pw.println("<form action='/search' method='GET'>");
@@ -127,7 +151,9 @@ public class ListServlet extends HttpServlet {
 
         pw.println("</table>");
         pw.println("<br>");
+        pw.println("<div class='button-container'>");
         pw.println("<button class='main-page-button' onclick='goToMainPage()'>메인페이지</button>");
+        pw.println("</div>");
 
         pw.println("</body>");
         pw.println("</html>");
