@@ -40,6 +40,14 @@ public class DetailServlet extends HttpServlet {
         pw.println("  border-radius: 4px;");
         pw.println("  cursor: pointer;");
         pw.println("}");
+        pw.println(".edit-button {");
+        pw.println("  padding: 10px 20px;");
+        pw.println("  font-size: 16px;");
+        pw.println("  background-color: #f2f2f2;");
+        pw.println("  border: none;");
+        pw.println("  border-radius: 4px;");
+        pw.println("  cursor: pointer;");
+        pw.println("}");
         pw.println("</style>");
         pw.println("</head>");
         pw.println("<body>");
@@ -56,6 +64,8 @@ public class DetailServlet extends HttpServlet {
             pw.println("<tr><th>출판사</th><td>" + library.getPublisher() + "</td></tr>");
             pw.println("<tr><th>수량</th><td>" + library.getCount() + "권" + "</td></tr>");
             pw.println("</table>");
+            pw.println("<br>");
+            pw.println("<button class='edit-button' onclick='editLibrary(" + library.getId() + ")'>수정</button>");
         } else {
             pw.println("<h1>도서를 찾을 수 없습니다.</h1>");
         }
@@ -65,6 +75,9 @@ public class DetailServlet extends HttpServlet {
         pw.println("<script>");
         pw.println("function goBack() {");
         pw.println("  window.history.back();");
+        pw.println("}");
+        pw.println("function editLibrary(id) {");
+        pw.println("  window.location.href = '/update?id=' + id;");
         pw.println("}");
         pw.println("</script>");
 
