@@ -2,6 +2,7 @@ package com.example.library_servlet.controller;
 
 import com.example.library_servlet.domain.Library;
 import com.example.library_servlet.service.LibraryService;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+@WebServlet("/list")
 public class ListServlet extends HttpServlet {
     private final LibraryService libraryService = new LibraryService();
 
