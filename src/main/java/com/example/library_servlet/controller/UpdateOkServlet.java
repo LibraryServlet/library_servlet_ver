@@ -31,6 +31,6 @@ public class UpdateOkServlet extends HttpServlet {
 
         libraryService.updateLibrary(new Library(id, name, author, publisher, isbn, releaseYear, count, summary, image, category));
 
-        resp.sendRedirect("list");
+        resp.sendRedirect("list/" + id);
     }
 }
