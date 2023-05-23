@@ -89,7 +89,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     public void updateLibrary(Library library) {
         String sql = "update library set " +
                 "name = '" + library.getName() + "', author = '" + library.getAuthor() + "', publisher = '" + library.getPublisher() + "', isbn = '"
-                + library.getIsbn() + "', release_year = " + library.getReleaseYear() + ", count = " + library.getCount() + ", summary = '" + library.getSummary().replace("'", "") + "', image = '"
+                + library.getIsbn() + "', release_year = " + library.getReleaseYear() + ", summary = '" + library.getSummary().replace("'", "") + "', image = '"
                 + library.getImage() + "', category = '" + library.getCategory() + "' where id = " + library.getId();
         executeUpdate(sql);
     }

@@ -52,11 +52,15 @@ public class UpdateServlet extends HttpServlet {
         pw.println("  margin-top: 10px;");
         pw.println("}");
         pw.println("#regbox input[type='text'], textarea {");
-        pw.println("  width: 90%;");
-        pw.println("  padding: 5px;");
-        pw.println("  border-radius: 4px;");
-        pw.println("  border: 1px solid #ccc;");
-        pw.println("}");
+        pw.println("width: 90%;\n" +
+                "            height: 32px;\n" +
+                "            font-size: 15px;\n" +
+                "            border: 0;\n" +
+                "            border-radius: 15px;\n" +
+                "            outline: none;\n" +
+                "            padding-left: 10px;\n" +
+                "            background-color: rgb(233, 233, 233);" +
+                "}");
         pw.println("textarea {");
         pw.println("  height: 150px;");
         pw.println("}");
@@ -112,9 +116,7 @@ public class UpdateServlet extends HttpServlet {
         pw.println("<input type='text' name='isbn' value='" + lib.getIsbn() + "'><br/>");
         pw.println("<label for='releaseYear'>출판 연도</label>");
         pw.println("<input type='text' name='releaseYear' value='" + lib.getReleaseYear() + "'><br/>");
-
-        pw.println("<label for='count'>수량</label>");
-        pw.println("<input type='text' name='count' value='" + lib.getCount() + "'><br/>");
+        pw.println("<input type='hidden' name='count' value='" + lib.getCount() + "'>");
         pw.println("<label for='summary'>요약</label>");
         pw.println("<textarea name='summary'>" + lib.getSummary() + "</textarea><br/>");
         pw.println("<label for='image'>이미지</label>");

@@ -27,6 +27,17 @@ public class Library {
         this.category = category;
     }
 
+    public Library(String name, String author, String publisher, String isbn, int releaseYear, String summary, String image, String category) {
+        this.name = name;
+        this.author = author;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.releaseYear = releaseYear;
+        this.summary = summary;
+        this.image = image;
+        this.category = category;
+    }
+
     public Library(Long id, String name, String author, String publisher, String isbn, int releaseYear, int count, String summary, String image, String category) {
         this.id = id;
         this.name = name;

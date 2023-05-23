@@ -11,7 +11,7 @@ public class ConnectionManager {
         String driver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/db01";    // jdbc는 DB 이름
         String id = "root";
-        String pwd = "0711";
+        String pwd = "1234";
 
         try {
             Class.forName(driver);

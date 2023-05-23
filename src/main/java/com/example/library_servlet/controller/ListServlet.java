@@ -96,6 +96,16 @@ public class ListServlet extends HttpServlet {
         pw.println(".quantity-input {");
         pw.println("  width: 60px;");
         pw.println("}");
+        pw.println("#search-input {\n" +
+                "  width: 200px;\n" +
+                "  height: 32px;\n" +
+                "  font-size: 15px;\n" +
+                "  border: 0;\n" +
+                "  border-radius: 15px;\n" +
+                "  outline: none;\n" +
+                "  padding-left: 10px;\n" +
+                "  background-color: rgb(233, 233, 233);\n" +
+                "}");
         pw.println(".button-container button {");
         pw.println("  padding: 10px 20px;");
         pw.println("  font-size: 16px;");
@@ -125,6 +135,48 @@ public class ListServlet extends HttpServlet {
         pw.println("  background-color: #4caf50;");
         pw.println("}");
 
+        pw.println(".search-button {\n" +
+                "\tbackground-color:#4caf50;\n" +
+                "\tborder:none;\n" +
+                "\tborder-radius:20px;\n" +
+                "\tdisplay:inline-block;\n" +
+                "\tcursor:pointer;\n" +
+                "\tcolor:#ffffff;\n" +
+                "\tfont-family:Arial;\n" +
+                "\tfont-size:17px;\n" +
+                "\tpadding:5px 10px;\n" +
+                "\ttext-decoration:none;\n" +
+                "}\n" +
+                ".myButton:hover {\n" +
+                "\tbackground-color:#57a5ff;\n" +
+                "}\n" +
+                ".myButton:active {\n" +
+                "\tposition:relative;\n" +
+                "\ttop:1px;\n" +
+                "}");
+
+        pw.println(".pl{\n" +
+                "    opacity: 0.7; "+
+                "    width: 100px;\n" +
+                "    border: 1px solid #C4C4C4;\n" +
+                "    box-sizing: border-box;\n" +
+                "    border-radius: 10px;\n" +
+                "    padding: 12px 13px;\n" +
+                "    font-family: 'Roboto';\n" +
+                "    font-style: normal;\n" +
+                "    font-weight: 400;\n" +
+                "    font-size: 14px;\n" +
+                "    line-height: 16px;\n" +
+                "}\n" +
+                "\n" +
+                ".pl:focus{\n" +
+                "    border: 1px solid #9B51E0;\n" +
+                "    box-sizing: border-box;\n" +
+                "    border-radius: 10px;\n" +
+                "    outline: 3px solid #F8E4FF;\n" +
+                "    border-radius: 10px;\n" +
+                "}");
+
         pw.println("</style>");
 
         pw.println("<script>");
@@ -149,15 +201,15 @@ public class ListServlet extends HttpServlet {
 
         pw.println("<div class='search-form'>");
         pw.println("<form action='/search' method='GET'>");
-        //pw.println("<label for='search-category'>검색 항목:</label>");
-        pw.println("<select id='search-category' name='category'>");
+        pw.println("<select id=\"\" class=\"pl\" name='category'>");
         pw.println("<option value='title'>책 이름</option>");
         pw.println("<option value='author'>저자</option>");
         pw.println("<option value='publisher'>출판사</option>");
         pw.println("<option value='isbn'>ISBN</option>");
         pw.println("</select>");
-        pw.println("<input type='text' name='search' placeholder='검색어'/>");
-        pw.println("<input type='submit' value='검색'/>");
+
+        pw.println("<input id = 'search-input' type='text' name='search' placeholder='검색어'/>");
+        pw.println("<button class='search-button' type='submit' >검색</button>");
         pw.println("</form>");
         pw.println("</div>");
 
@@ -180,7 +232,7 @@ public class ListServlet extends HttpServlet {
 
         if (request.getAttribute("searchResults") == null) {
             libraryList = libraryService.findAll();
-        } else if(request.getAttribute("searchResults")!=null){
+        } else if (request.getAttribute("searchResults") != null) {
             libraryList = (List<Library>) request.getAttribute("searchResults");
         }
 
