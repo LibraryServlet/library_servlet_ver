@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ListServlet extends HttpServlet {
@@ -15,7 +17,7 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=euc-kr");
+        response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter pw = response.getWriter();
         pw.println("<html>");
@@ -59,28 +61,6 @@ public class ListServlet extends HttpServlet {
         pw.println("}");
         pw.println("</style>");
 
-        pw.println("<script>");
-        pw.println("function submitForm(id) {");
-        pw.println("  document.getElementById('updateForm' + id).submit();");
-        pw.println("}");
-
-        pw.println("function increaseQuantity(id) {");
-        pw.println("  var quantityInput = document.getElementById('quantity' + id);");
-        pw.println("  var quantity = parseInt(quantityInput.value);");
-        pw.println("  quantity += 1;");
-        pw.println("  quantityInput.value = quantity;");
-        pw.println("}");
-
-        pw.println("function decreaseQuantity(id) {");
-        pw.println("  var quantityInput = document.getElementById('quantity' + id);");
-        pw.println("  var quantity = parseInt(quantityInput.value);");
-        pw.println("  if (quantity > 0) {");
-        pw.println("    quantity -= 1;");
-        pw.println("    quantityInput.value = quantity;");
-        pw.println("  }");
-        pw.println("}");
-        pw.println("</script>");
-
         pw.println("</head>");
         pw.println("<body>");
 
@@ -106,24 +86,25 @@ public class ListServlet extends HttpServlet {
         pw.println("<th>저자</th>");
         pw.println("<th>출판사</th>");
         pw.println("<th>수량</th>");
-        pw.println("<th>수정</th>");
         pw.println("<th>삭제</th>");
         pw.println("</tr>");
 
-        List<Library> libraryList = libraryService.findAll();
+        List<Library> libraryList = new ArrayList<>();
+
+        if (request.getAttribute("searchResults") == null) {
+            libraryList = libraryService.findAll();
+        } else {
+            libraryList = (List<Library>) request.getAttribute("searchResults");
+        }
 
         for (Library library : libraryList) {
             pw.println("<tr>");
-            pw.println("<td>" + library.getName() + "</td>");
+            pw.println("<td><a href='/list/" + library.getId() + "'>" + library.getName() + "</a></td>");
             pw.println("<td>" + library.getAuthor() + "</td>");
             pw.println("<td>" + library.getPublisher() + "</td>");
             pw.println("<td>" + library.getCount() + "권" + "</td>");
 
-            pw.println("<td>");
-            pw.println("<a href='#' onclick='submitForm(" + library.getId() + ")'>수정</a>");
-            pw.println("<form id='updateForm" + library.getId() + "' method='post' action='updateok' style='display:none;'>");
             pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
-
             pw.println("<td><a href='delete?id=" + library.getId() + "'>삭제</a></td>");
 
             pw.println("</tr>");
