@@ -36,7 +36,7 @@ public class LibraryService {
         return libraryRepository.findByPublisher(publisher);
     }
 
-    public Library findByIsbn(String isbn) {
+    public List<Library> findByIsbn(String isbn) {
         return libraryRepository.findByIsbn(isbn);
     }
 

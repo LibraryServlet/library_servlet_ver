@@ -18,7 +18,7 @@ public interface LibraryRepository {
 
     List<Library> findByPublisher(String publisher);
 
-    Library findByIsbn(String isbn);
+    List<Library> findByIsbn(String isbn);
 
     List<Library> findByCategory(String category);
 

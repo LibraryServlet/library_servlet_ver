@@ -57,13 +57,9 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     }
 
     @Override
-    public Library findByIsbn(String isbn) {
-        String sql = "select * from library where isbn = '" + isbn + "'";
-        try {
-            return executeQuery(sql).get(0);
-        } catch (Exception e) {
-            return null;
-        }
+    public List<Library> findByIsbn(String isbn) {
+        String sql = "select * from library where isbn like '%" + isbn + "%'";
+        return executeQuery(sql);
     }
 
     @Override
