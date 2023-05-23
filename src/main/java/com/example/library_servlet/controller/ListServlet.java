@@ -1,5 +1,6 @@
 package com.example.library_servlet.controller;
 
+import com.example.library_servlet.service.LibraryService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -9,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 
 public class ListServlet extends HttpServlet {
-    private final UserRepository userRepository = UserRepository.getInstance();
+    private final LibraryService libraryService = new LibraryService();
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws IOException {

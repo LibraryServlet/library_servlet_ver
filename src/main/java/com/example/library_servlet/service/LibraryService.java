@@ -8,8 +8,8 @@ import java.util.List;
 public class LibraryService {
     private final LibraryRepositoryImpl libraryRepository;
 
-    public LibraryService(LibraryRepositoryImpl libraryRepository) {
-        this.libraryRepository = libraryRepository;
+    public LibraryService() {
+        this.libraryRepository = new LibraryRepositoryImpl();
     }
 
     public void insert(Library library) {

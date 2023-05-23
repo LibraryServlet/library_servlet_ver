@@ -40,8 +40,8 @@
 </head>
 <body>
 <ul>
-    <li><a href="insert.jsp">회원가입</a></li>
-    <li><a href="list">회원목록</a></li>
+    <li><a href="insert.jsp">도서 추가</a></li>
+    <li><a href="list">도서 목록</a></li>
 </ul>
 </body>
 </html>

@@ -117,7 +117,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
     private List<Library> executeQuery(String sql) {
         List<Library> libraryList = new ArrayList<>();
         try {
-            Statement stmt = ConnectionManager.con.createStatement();
+            Statement stmt = ConnectionManager.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -134,7 +134,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 
     private void executeUpdate(String sql) {
         try {
-            Statement stmt = ConnectionManager.con.createStatement();
+            Statement stmt = ConnectionManager.getConnection().createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             throw new RuntimeException(e);

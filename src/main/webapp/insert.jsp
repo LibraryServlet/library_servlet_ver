@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>회원가입</title>
+    <title>도서 추가</title>
     <style>
         body {
             display: flex;
@@ -54,13 +54,44 @@
 <body>
 <form method="get" action="insert">
     <fieldset id="regbox">
-        <%--@declare id="name"--%>
-        <legend style="color: #555;">회원가입</legend>
-        <label for="name">이름</label>
+        <%--@declare id="name"--%><%--@declare id="author"--%><%--@declare id="publisher"--%><%--@declare id="isbn"--%><%--@declare id="releaseyear"--%><%--@declare id="count"--%><%--@declare id="summary"--%><%--@declare id="image"--%><%--@declare id="category"--%><legend style="color: #555;">도서 추가</legend>
+        <label for="name">책 이름</label>
         <label>
             <input type="text" name="name"/>
         </label><br/>
-        <input type="submit" value="가입">
+        <label for="author">작가</label>
+        <label>
+            <input type="text" name="author"/>
+        </label><br/>
+        <label for="publisher">출판사</label>
+        <label>
+            <input type="text" name="publisher"/>
+        </label><br/>
+        <label for="isbn">ISBN</label>
+        <label>
+            <input type="text" name="isbn"/>
+        </label><br/>
+        <label for="releaseYear">출판 연도</label>
+        <label>
+            <input type="text" name="releaseYear"/>
+        </label><br/>
+        <label for="count">수량</label>
+        <label>
+            <input type="text" name="count"/>
+        </label><br/>
+        <label for="summary">요약</label>
+        <label>
+            <input type="text" name="summary"/>
+        </label><br/>
+        <label for="image">이미지</label>
+        <label>
+            <input type="text" name="image"/>
+        </label><br/>
+        <label for="category">카테고리</label>
+        <label>
+            <input type="text" name="category"/>
+        </label><br/>
+        <input type="submit" value="추가">
         <input type="reset" value="취소" onclick="goBack()"/>
     </fieldset>
 </form>

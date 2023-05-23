@@ -1,5 +1,6 @@
 package com.example.library_servlet.controller;
 
+import com.example.library_servlet.service.LibraryService;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class UpdateServlet extends HttpServlet {
+
+    private final LibraryService libraryService = new LibraryService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

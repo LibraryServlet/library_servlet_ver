@@ -1,7 +1,8 @@
 package com.example.library_servlet.controller;
 
-import org.example.domain.Library;
-import org.example.service.LibraryService;
+
+import com.example.library_servlet.domain.Library;
+import com.example.library_servlet.service.LibraryService;
 
 import java.awt.*;
 import java.io.IOException;
