@@ -64,9 +64,11 @@ public class ListServlet extends HttpServlet {
         pw.println("}");
         pw.println("th {");
         //pw.println("  border: 1px solid black;");
-        pw.println("  border-radius: 15px;"); //
+        //pw.println("  border-radius: 15px 15px 0px 0px;"); //
         pw.println("  padding: 8px;");
         pw.println("  text-align: left;");
+        pw.println("  background-color: black;");
+        pw.println("  color: white;");
         pw.println("}");
         pw.println("td {");
         pw.println("  border: 1px solid black;");
