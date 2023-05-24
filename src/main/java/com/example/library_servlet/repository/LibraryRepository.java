@@ -29,11 +29,4 @@ public interface LibraryRepository {
     void deleteById(Long id);
 
     void updateLibrary(Library library);
-    void updateSummary(Long id, String summary);
-
-    void updateImage(Long id, String img);
-
-    void updateCategory(Long id, String category);
-
-    void removeAll();
 }

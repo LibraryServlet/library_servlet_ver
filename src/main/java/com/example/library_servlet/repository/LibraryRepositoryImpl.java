@@ -4,10 +4,7 @@ package com.example.library_servlet.repository;
 import com.example.library_servlet.entity.Library;
 import com.example.library_servlet.repository.db.ConnectionManager;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,26 +12,54 @@ import java.util.Objects;
 
 public class LibraryRepositoryImpl implements LibraryRepository {
 
+    Connection conn;
+
     @Override
     public void insert(Library library) {
-        String sql = "insert into library(name, author, publisher, isbn, release_year, count, summary, image, category) " +
-                "values('" + library.getName() + "', '" + library.getAuthor() + "', '" + library.getPublisher() + "', '"
-                + library.getIsbn() + "', '" + library.getReleaseYear() + "', '" + library.getCount() + "', '" + library.getSummary().replace("'", "") + "', '"
-                + library.getImage() + "', '" + library.getCategory() + "')";
-        executeUpdate(sql);
+        String sql = "insert into library (name, author, publisher, isbn, release_year, count, summary, image, category) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            conn = ConnectionManager.getConnection();
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, library.getName());
+            pstmt.setString(2, library.getAuthor());
+            pstmt.setString(3, library.getPublisher());
+            pstmt.setString(4, library.getIsbn());
+            pstmt.setInt(5, library.getReleaseYear());
+            pstmt.setInt(6, library.getCount());
+            pstmt.setString(7, library.getSummary());
+            pstmt.setString(8, library.getImage());
+            pstmt.setString(9, library.getCategory());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
     public List<Library> findAll() {
         String sql = "select * from library";
-        return executeQuery(sql);
+        try {
+            conn = ConnectionManager.getConnection();
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            return executeQuery(pstmt);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public Library findById(Long id) {
-        String sql = "select * from library where id = " + id;
+        String sql = "select * from library where id = ?";
         try {
-            return executeQuery(sql).get(0);
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, id);
+            return executeQuery(pstmt).get(0);
         } catch (Exception e) {
             return null;
         }
@@ -42,92 +67,139 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 
     @Override
     public List<Library> findByName(String name) {
-        String sql = "select * from library where name like '%" + name + "%'";
-        return executeQuery(sql);
+        String sql = "select * from library where name like ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + name + "%");
+            return executeQuery(pstmt);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public List<Library> findByAuthor(String author) {
-        String sql = "select * from library where author like '%" + author + "%'";
-        return executeQuery(sql);
+        String sql = "select * from library where author like ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + author + "%");
+            return executeQuery(pstmt);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public List<Library> findByPublisher(String publisher) {
-        String sql = "select * from library where publisher like '%" + publisher + "%'";
-        return executeQuery(sql);
+        String sql = "select * from library where publisher like ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + publisher + "%");
+            return executeQuery(pstmt);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public List<Library> findByIsbn(String isbn) {
-        String sql = "select * from library where isbn like '%" + isbn + "%'";
-        return executeQuery(sql);
+        String sql = "select * from library where isbn like ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + isbn + "%");
+            return executeQuery(pstmt);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public List<Library> findByCategory(String category) {
-        String sql = "select * from library where category like '%" + category + "%'";
-        return executeQuery(sql);
+        String sql = "select * from library where category like ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + category + "%");
+            return executeQuery(pstmt);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override
     public void countPlus(Long id, int count) {
-        String sql = "update library set count = count + " + count + " where id = " + id;
-        executeUpdate(sql);
+        String sql = "update library set count = count + ? where id = ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, count);
+            pstmt.setLong(2, id);
+            pstmt.executeUpdate();
+        } catch (Exception ignored) {
+
+        }
     }
 
     @Override
     public void countMinus(Long id, int count) {
-        String sql = "update library set count = count - " + count + " where id = " + id;
-        executeUpdate(sql);
+        String sql = "update library set count = count - ? where id = ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, count);
+            pstmt.setLong(2, id);
+            pstmt.executeUpdate();
+        } catch (Exception ignored) {
+
+        }
     }
 
     @Override
     public void deleteById(Long id) {
-        String sql = "delete from library where id = " + id;
-        executeUpdate(sql);
+        String sql = "delete from library where id = ?";
+        try {
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+        } catch (Exception ignored) {
+
+        }
     }
 
     public void updateLibrary(Library library) {
         String sql = "update library set " +
-                "name = '" + library.getName() + "', author = '" + library.getAuthor() + "', publisher = '" + library.getPublisher() + "', isbn = '"
-                + library.getIsbn() + "', release_year = " + library.getReleaseYear() + ", summary = '" + library.getSummary().replace("'", "") + "', image = '"
-                + library.getImage() + "', category = '" + library.getCategory() + "' where id = " + library.getId();
-        executeUpdate(sql);
-    }
-
-    @Override
-    public void updateSummary(Long id, String summary) {
-        String sql = "update library set summary = '" + summary + "' where id = " + id;
-        executeUpdate(sql);
-    }
-
-    @Override
-    public void updateImage(Long id, String img) {
-        String sql = "update library set image = '" + img + "' where id = " + id;
-        executeUpdate(sql);
-    }
-
-    @Override
-    public void updateCategory(Long id, String category) {
-        String sql = "update library set category = '" + category + "' where id = " + id;
-        executeUpdate(sql);
-    }
-
-    @Override
-    public void removeAll() {
-        String sql = "delete from library";
-        executeUpdate(sql);
-    }
-
-    private List<Library> executeQuery(String sql) {
-        List<Library> libraryList = new ArrayList<>();
-        Statement stmt = null;
-        ResultSet rs = null;
-        Connection conn = new ConnectionManager().getConnection();
+                "name = ?, author = ?, publisher = ?, isbn = ?, release_year = ?, summary = ?, image = ?, category = ? where id = ?";
         try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
+            conn = ConnectionManager.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, library.getName());
+            pstmt.setString(2, library.getAuthor());
+            pstmt.setString(3, library.getPublisher());
+            pstmt.setString(4, library.getIsbn());
+            pstmt.setInt(5, library.getReleaseYear());
+            pstmt.setString(6, library.getSummary());
+            pstmt.setString(7, library.getImage());
+            pstmt.setString(8, library.getCategory());
+            pstmt.setLong(9, library.getId());
+
+
+            pstmt.executeUpdate();
+        } catch (Exception ignored) {
+
+        }
+    }
+
+    private List<Library> executeQuery(PreparedStatement pstmt) {
+        List<Library> libraryList = new ArrayList<>();
+        ResultSet rs = null;
+        try {
+            rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 libraryList.add(new Library(Long.parseLong(rs.getString(1)), rs.getString(2), rs.getString(3),
@@ -143,7 +215,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
                 e.printStackTrace();
             }
             try {
-                Objects.requireNonNull(stmt).close();
+                Objects.requireNonNull(pstmt).close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -157,25 +229,22 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         return libraryList;
     }
 
-    private void executeUpdate(String sql) {
-        Statement stmt = null;
-        Connection conn = new ConnectionManager().getConnection();
-        try {
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                Objects.requireNonNull(stmt).close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    private void executeUpdate(PreparedStatement pstmt) {
+//        try {
+//            pstmt.executeUpdate();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } finally {
+//            try {
+//                Objects.requireNonNull(pstmt).close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                conn.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }

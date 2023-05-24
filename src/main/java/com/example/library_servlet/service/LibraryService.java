@@ -59,20 +59,4 @@ public class LibraryService {
     public void updateLibrary(Library lib){
         libraryRepository.updateLibrary(lib);
     }
-
-    public void updateSummary(Long id, String summary) {
-        libraryRepository.updateSummary(id, summary);
-    }
-
-    public void updateImage(Long id, String img) {
-        libraryRepository.updateImage(id, img);
-    }
-
-    public void updateCategory(Long id, String category) {
-        libraryRepository.updateCategory(id, category);
-    }
-
-    public void removeAll() {
-        libraryRepository.removeAll();
-    }
 }
