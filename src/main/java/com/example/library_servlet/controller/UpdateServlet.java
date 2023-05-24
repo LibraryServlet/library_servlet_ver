@@ -1,6 +1,6 @@
 package com.example.library_servlet.controller;
 
-import com.example.library_servlet.domain.Library;
+import com.example.library_servlet.entity.Library;
 import com.example.library_servlet.service.LibraryService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/update")
 public class UpdateServlet extends HttpServlet {

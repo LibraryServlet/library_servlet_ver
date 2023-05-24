@@ -1,4 +1,4 @@
-package com.example.library_servlet.domain;
+package com.example.library_servlet.entity;
 
 public class Library {
     private Long id;

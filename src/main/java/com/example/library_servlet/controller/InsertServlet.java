@@ -1,7 +1,7 @@
 package com.example.library_servlet.controller;
 
 
-import com.example.library_servlet.domain.Library;
+import com.example.library_servlet.entity.Library;
 import com.example.library_servlet.service.LibraryService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +19,6 @@ public class InsertServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        // 1. 파라미터로 전송된 값을 얻어오기.
         request.setCharacterEncoding("euc-kr");
         String name = request.getParameter("name");
         String author = request.getParameter("author");

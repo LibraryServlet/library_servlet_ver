@@ -1,7 +1,7 @@
 package com.example.library_servlet.repository;
 
 
-import com.example.library_servlet.domain.Library;
+import com.example.library_servlet.entity.Library;
 
 import java.util.List;
 

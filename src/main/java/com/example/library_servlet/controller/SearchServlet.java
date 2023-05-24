@@ -1,6 +1,6 @@
 package com.example.library_servlet.controller;
 
-import com.example.library_servlet.domain.Library;
+import com.example.library_servlet.entity.Library;
 import com.example.library_servlet.service.LibraryService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
