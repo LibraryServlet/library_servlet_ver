@@ -4,11 +4,13 @@ package com.example.library_servlet.repository;
 import com.example.library_servlet.domain.Library;
 import com.example.library_servlet.repository.db.ConnectionManager;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LibraryRepositoryImpl implements LibraryRepository {
@@ -120,9 +122,12 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 
     private List<Library> executeQuery(String sql) {
         List<Library> libraryList = new ArrayList<>();
+        Statement stmt = null;
+        ResultSet rs = null;
+        Connection conn = ConnectionManager.getConnection();
         try {
-            Statement stmt = ConnectionManager.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 libraryList.add(new Library(Long.parseLong(rs.getString(1)), rs.getString(2), rs.getString(3),
@@ -131,17 +136,46 @@ public class LibraryRepositoryImpl implements LibraryRepository {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                Objects.requireNonNull(rs).close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                Objects.requireNonNull(stmt).close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return libraryList;
     }
 
     private void executeUpdate(String sql) {
+        Statement stmt = null;
+        Connection conn = ConnectionManager.getConnection();
         try {
-            Statement stmt = ConnectionManager.getConnection().createStatement();
+            stmt = conn.createStatement();
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            try {
+                Objects.requireNonNull(stmt).close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
