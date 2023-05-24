@@ -54,18 +54,31 @@ public class SortServlet extends HttpServlet {
     private List<Library> selectCategory(String category, String search) {
         List<Library> libraryList;
 
-        if (Objects.requireNonNull(category).equals("title"))
-            libraryList = libraryService.findByName(search);
-        else if (Objects.requireNonNull(category).equals("author"))
-            libraryList = libraryService.findByAuthor(search);
-        else if (Objects.requireNonNull(category).equals("publisher"))
-            libraryList = libraryService.findByPublisher(search);
-        else if (Objects.requireNonNull(category).equals("isbn"))
-            libraryList = libraryService.findByIsbn(search);
-        else if (Objects.requireNonNull(category).equals("category"))
-            libraryList = libraryService.findByCategory(search);
-        else
-            libraryList = libraryService.findAll();
+        switch (category) {
+            case "title":
+                libraryList = libraryService.findByName(search);
+                break;
+
+            case "author":
+                libraryList = libraryService.findByAuthor(search);
+                break;
+
+            case "publisher":
+                libraryList = libraryService.findByPublisher(search);
+                break;
+
+            case "isbn":
+                libraryList = libraryService.findByIsbn(search);
+                break;
+
+            case "category":
+                libraryList = libraryService.findByCategory(search);
+                break;
+
+            default:
+                libraryList = libraryService.findAll();
+                break;
+        }
 
         return libraryList;
     }

@@ -127,7 +127,7 @@ public class ListServlet extends HttpServlet {
                 "  padding-left: 10px;\n" +
                 "  background-color: rgb(233, 233, 233);\n" +
                 "font-family: 'HANAMDAUM', Arial, sans-serif;" +
-        "}");
+                "}");
         pw.println(".button-container button {");
         pw.println("  padding: 10px 20px;");
         pw.println("  font-size: 16px;");
@@ -184,7 +184,7 @@ public class ListServlet extends HttpServlet {
                 "}");
 
         pw.println(".pl{\n" +
-                "    opacity: 0.7; "+
+                "    opacity: 0.7; " +
                 "    width: 100px;\n" +
                 "    border: 1px solid #C4C4C4;\n" +
                 "    box-sizing: border-box;\n" +
@@ -220,7 +220,7 @@ public class ListServlet extends HttpServlet {
                 "let searchParam = urlParams.get('search');");
         pw.println("  window.location.href = '/sort?type=name&category='+categoryParam+'&search='+searchParam;");
         pw.println("}");
-        pw.println("function sortByYear() {"+
+        pw.println("function sortByYear() {" +
                 "let urlParams = new URLSearchParams(window.location.search);\n" +
                 "let categoryParam = urlParams.get('category');\n" +
                 "let searchParam = urlParams.get('search');");
@@ -256,15 +256,15 @@ public class ListServlet extends HttpServlet {
         pw.println("</div>");
 
         pw.println("<table>");
-        pw.println("<tr>");
-        pw.println("<th>이름</th>");
-        pw.println("<th>저자</th>");
-        pw.println("<th>출판사</th>");
-        pw.println("<th>카테고리</th>");
-        pw.println("<th>출시 연도</th>");
-        pw.println("<th>수량</th>");
-        pw.println("<th>삭제</th>");
-        pw.println("</tr>");
+//        pw.println("<tr>");
+//        pw.println("<th>이름</th>");
+//        pw.println("<th>저자</th>");
+//        pw.println("<th>출판사</th>");
+//        pw.println("<th>카테고리</th>");
+//        pw.println("<th>출시 연도</th>");
+//        pw.println("<th>수량</th>");
+//        pw.println("<th>삭제</th>");
+//        pw.println("</tr>");
 
         List<Library> libraryList = new ArrayList<>();
 
@@ -278,19 +278,32 @@ public class ListServlet extends HttpServlet {
             libraryList = (List<Library>) request.getAttribute("sortedLibraryList");
         }
 
-        for (Library library : libraryList) {
+        if (libraryList.size() == 0) {
+            pw.println("<h2 style='text-align: center'>도서가 없습니다.</h2>");
+        } else {
             pw.println("<tr>");
-            pw.println("<td><a href='/list/" + library.getId() + "' class=\"title\">" + library.getName() + "</a></td>");
-            pw.println("<td>" + library.getAuthor() + "</td>");
-            pw.println("<td>" + library.getPublisher() + "</td>");
-            pw.println("<td>" + library.getCategory() + "</td>");
-            pw.println("<td>" + library.getReleaseYear() + "년" + "</td>");
-            pw.println("<td>" + library.getCount() + "권" + "</td>");
-
-            pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
-            pw.println("<td><a href='delete?id=" + library.getId() + "' class=\"delete_btn\">삭제</a></td>");
-
+            pw.println("<th>이름</th>");
+            pw.println("<th>저자</th>");
+            pw.println("<th>출판사</th>");
+            pw.println("<th>카테고리</th>");
+            pw.println("<th>출시 연도</th>");
+            pw.println("<th>수량</th>");
+            pw.println("<th>삭제</th>");
             pw.println("</tr>");
+            for (Library library : libraryList) {
+                pw.println("<tr>");
+                pw.println("<td><a href='/list/" + library.getId() + "' class=\"title\">" + library.getName() + "</a></td>");
+                pw.println("<td>" + library.getAuthor() + "</td>");
+                pw.println("<td>" + library.getPublisher() + "</td>");
+                pw.println("<td>" + library.getCategory() + "</td>");
+                pw.println("<td>" + library.getReleaseYear() + "년" + "</td>");
+                pw.println("<td>" + library.getCount() + "권" + "</td>");
+
+                pw.println("<input type='hidden' name='id' value='" + library.getId() + "'/>");
+                pw.println("<td><a href='delete?id=" + library.getId() + "' class=\"delete_btn\">삭제</a></td>");
+
+                pw.println("</tr>");
+            }
         }
 
         pw.println("</table>");
