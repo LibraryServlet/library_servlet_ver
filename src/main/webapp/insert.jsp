@@ -48,7 +48,7 @@
             color: #333;
         }
 
-        input[type="text"] {
+        input[type="text"], textarea {
             width: 100%;
             height: 32px;
             font-size: 15px;
@@ -58,6 +58,10 @@
             padding-left: 10px;
             background-color: rgb(233, 233, 233);
             font-family: 'HANAMDAUM', Arial, sans-serif;
+        }
+        textarea{
+            height: 150px;
+            resize: none;
         }
         .btn-container{
             margin: 0 auto;
@@ -99,13 +103,13 @@
         <label for="isbn">ISBN</label>
         <input type="text" name="isbn" required/><br/>
         <label for="releaseYear">출판 연도</label>
-        <input type="text" name="releaseYear" required/><br/>
+        <input type="text" name="releaseYear" placeholder="ex.2023" required/><br/>
         <label for="count">수량</label>
-        <input type="text" name="count" required/><br/>
+        <input type="text" name="count" placeholder="ex.5" required/><br/>
         <label for="summary">요약</label>
-        <input type="text" name="summary" required/><br/>
+            <textarea name="summary" required></textarea><br/>
         <label for="image">이미지</label>
-        <input type="text" name="image" required/><br/>
+        <input type="text" name="image" placeholder="ex.http://image" required/><br/>
         <label for="category">카테고리</label>
         <input type="text" name="category" required/><br/>
         <div class="btn-container">

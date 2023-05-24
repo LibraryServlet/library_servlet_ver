@@ -54,14 +54,14 @@ public class UpdateServlet extends HttpServlet {
                 "        }");
         pw.println("#regbox textarea{" +
                 "resize: none;" +
-                "width: 90%}");
+                "width: 100%}");
         pw.println("label {");
         pw.println("  display: block;");
         pw.println("  margin-top: 10px;");
         pw.println("  margin-bottom: 10px;");
         pw.println("}");
         pw.println("#regbox input[type='text'], textarea {");
-        pw.println("width: 90%;\n" +
+        pw.println("width: 100%;\n" +
                 "            height: 32px;\n" +
                 "            font-size: 15px;\n" +
                 "            border: 0;\n" +
@@ -69,6 +69,7 @@ public class UpdateServlet extends HttpServlet {
                 "            outline: none;\n" +
                 "            padding-left: 10px;\n" +
                 "            background-color: rgb(233, 233, 233);" +
+                "            margin: auto" +
                 "}");
         pw.println("textarea {");
         pw.println("  height: 150px;");
