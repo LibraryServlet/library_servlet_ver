@@ -124,7 +124,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
         List<Library> libraryList = new ArrayList<>();
         Statement stmt = null;
         ResultSet rs = null;
-        Connection conn = ConnectionManager.getConnection();
+        Connection conn = new ConnectionManager().getConnection();
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -159,7 +159,7 @@ public class LibraryRepositoryImpl implements LibraryRepository {
 
     private void executeUpdate(String sql) {
         Statement stmt = null;
-        Connection conn = ConnectionManager.getConnection();
+        Connection conn = new ConnectionManager().getConnection();
         try {
             stmt = conn.createStatement();
             stmt.executeUpdate(sql);

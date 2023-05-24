@@ -212,11 +212,17 @@ public class ListServlet extends HttpServlet {
         pw.println("function goToList() {");
         pw.println("  window.location.href = '/list';");
         pw.println("}");
-        pw.println("function sortByName() {");
-        pw.println("  window.location.href = '/sort?type=name';");
+        pw.println("function sortByName() {" +
+                "let urlParams = new URLSearchParams(window.location.search);\n" +
+                "let categoryParam = urlParams.get('category');\n" +
+                "let searchParam = urlParams.get('search');");
+        pw.println("  window.location.href = '/sort?type=name&category='+categoryParam+'&search='+searchParam;");
         pw.println("}");
-        pw.println("function sortByYear() {");
-        pw.println("  window.location.href = '/sort?type=year';");
+        pw.println("function sortByYear() {"+
+                "let urlParams = new URLSearchParams(window.location.search);\n" +
+                "let categoryParam = urlParams.get('category');\n" +
+                "let searchParam = urlParams.get('search');");
+        pw.println("  window.location.href = '/sort?type=year&category='+categoryParam+'&search='+searchParam;");
         pw.println("}");
         pw.println("</script>");
 
@@ -225,7 +231,6 @@ public class ListServlet extends HttpServlet {
 
         pw.println("<h1 onclick='goToList()' " +
                 "style='text-decoration: none; " +
-
                 "cursor: pointer;'>도서 목록</h1>");
 
         pw.println("<div class='search-form'>");
@@ -234,6 +239,7 @@ public class ListServlet extends HttpServlet {
         pw.println("<option value='title'>책 이름</option>");
         pw.println("<option value='author'>저자</option>");
         pw.println("<option value='publisher'>출판사</option>");
+        pw.println("<option value='category'>카테고리</option>");
         pw.println("<option value='isbn'>ISBN</option>");
         pw.println("</select>");
 
@@ -252,6 +258,7 @@ public class ListServlet extends HttpServlet {
         pw.println("<th>이름</th>");
         pw.println("<th>저자</th>");
         pw.println("<th>출판사</th>");
+        pw.println("<th>카테고리</th>");
         pw.println("<th>출시 연도</th>");
         pw.println("<th>수량</th>");
         pw.println("<th>삭제</th>");
@@ -274,6 +281,7 @@ public class ListServlet extends HttpServlet {
             pw.println("<td><a href='/list/" + library.getId() + "' class=\"title\">" + library.getName() + "</a></td>");
             pw.println("<td>" + library.getAuthor() + "</td>");
             pw.println("<td>" + library.getPublisher() + "</td>");
+            pw.println("<td>" + library.getCategory() + "</td>");
             pw.println("<td>" + library.getReleaseYear() + "년" + "</td>");
             pw.println("<td>" + library.getCount() + "권" + "</td>");
 

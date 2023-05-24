@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public class ConnectionManager {
 
-    public static Connection getConnection() {
+    public Connection getConnection() {
         Connection con = null;
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/db01";    // jdbc는 DB 이름
+        String url = "jdbc:mysql://localhost:3306/db01";
         String id = "root";
-        String pwd = "0711";
+        String pwd = "1234";
 
         try {
             Class.forName(driver);

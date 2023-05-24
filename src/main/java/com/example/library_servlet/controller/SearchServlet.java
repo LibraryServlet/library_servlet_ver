@@ -36,6 +36,9 @@ public class SearchServlet extends HttpServlet {
             case "isbn":
                 searchResults = libraryService.findByIsbn(search);
                 break;
+            case "category":
+                searchResults = libraryService.findByCategory(search);
+                break;
         }
 
         request.setAttribute("searchResults", searchResults);
