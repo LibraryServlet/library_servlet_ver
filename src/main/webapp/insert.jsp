@@ -11,9 +11,11 @@
             font-weight: 400;
             font-style: normal;
         }
+
         body {
             font-family: 'HANAMDAUM', Arial, sans-serif;
         }
+
         body::before {
             position: fixed;
             top: 0;
@@ -59,13 +61,16 @@
             background-color: rgb(233, 233, 233);
             font-family: 'HANAMDAUM', Arial, sans-serif;
         }
-        textarea{
+
+        textarea {
             height: 150px;
             resize: none;
         }
-        .btn-container{
+
+        .btn-container {
             margin: 0 auto;
         }
+
         input[type="submit"],
         input[type="reset"] {
             padding: 5px 10px;
@@ -83,14 +88,40 @@
             background-color: #45a049;
         }
     </style>
+
     <script>
         function goBack() {
             history.back();
         }
+
+        function validateForm() {
+            let countInput = document.getElementsByName('count')[0];
+            let releaseYearInput = document.getElementsByName('releaseYear')[0];
+
+            let count = parseInt(countInput.value);
+            let releaseYear = parseInt(releaseYearInput.value);
+
+            if (isNaN(count) || isNaN(releaseYear)) {
+                alert('수량과 출판 연도는 숫자만 입력해야 합니다.');
+                if (isNaN(releaseYear)) {
+                    releaseYearInput.value = '';
+                    releaseYearInput.focus();
+                }
+
+                if (isNaN(count)) {
+                    countInput.value = '';
+                    countInput.focus();
+                }
+
+                return false;
+            }
+
+            return true;
+        }
     </script>
 </head>
 <body>
-<form method="get" action="insert">
+<form method="get" action="insert" onsubmit="return validateForm()">
     <div id="regbox">
         <%--@declare id="name"--%><%--@declare id="author"--%><%--@declare id="publisher"--%><%--@declare id="isbn"--%><%--@declare id="releaseyear"--%><%--@declare id="count"--%><%--@declare id="summary"--%><%--@declare id="image"--%><%--@declare id="category"--%>
         <h2 style="color: #555;">도서 추가</h2>
@@ -107,14 +138,14 @@
         <label for="count">수량</label>
         <input type="text" name="count" placeholder="ex.5" required/><br/>
         <label for="summary">요약</label>
-            <textarea name="summary" required></textarea><br/>
+        <textarea name="summary" required></textarea><br/>
         <label for="image">이미지</label>
         <input type="text" name="image" placeholder="ex.http://image" required/><br/>
         <label for="category">카테고리</label>
         <input type="text" name="category" required/><br/>
         <div class="btn-container">
-        <input type="submit" value="추가">
-        <input type="reset" value="취소" onclick="goBack()"/>
+            <input type="submit" value="추가">
+            <input type="reset" value="취소" onclick="goBack()"/>
         </div>
     </div>
 </form>

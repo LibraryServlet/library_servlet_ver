@@ -27,6 +27,24 @@ public class UpdateServlet extends HttpServlet {
         pw.println("<html>");
         pw.println("<head>");
         pw.println("<title>도서 수정</title>");
+
+        pw.println("<script>\n" +
+                "function validateForm() {\n" +
+                "    let releaseYearInput = document.getElementsByName('releaseYear')[0];\n" +
+                "\n" +
+                "    let releaseYear = parseInt(releaseYearInput.value);\n" +
+                "\n" +
+                "    if (isNaN(releaseYear)) {\n" +
+                "        alert('출판 연도는 숫자만 입력해야 합니다.');\n" +
+                "        releaseYearInput.value = '';\n" +
+                "        releaseYearInput.focus();\n" +
+                "        return false;\n" +
+                "    }\n" +
+                "\n" +
+                "    return true;\n" +
+                "}\n" +
+                "</script>");
+
         pw.println("<style>");
         pw.println("@font-face {\n" +
                 "            font-family: 'HANAMDAUM';\n" +
@@ -60,7 +78,7 @@ public class UpdateServlet extends HttpServlet {
         pw.println("  margin-top: 10px;");
         pw.println("  margin-bottom: 10px;");
         pw.println("}");
-        pw.println("#regbox input[type='text'], textarea {");
+        pw.println("#regbox input[type='text'], input[type='number'], textarea {");
         pw.println("width: 100%;\n" +
                 "            height: 32px;\n" +
                 "            font-size: 15px;\n" +
@@ -116,11 +134,11 @@ public class UpdateServlet extends HttpServlet {
                 "margin-bottom: 15px;" +
                 "font-family: 'HANAMDAUM', Arial, sans-serif;}");
         pw.println("</style>");
+
         pw.println("</head>");
         pw.println("<body>");
 
-
-        pw.println("<form method='post' action='updateok'>");
+        pw.println("<form method='post' action='updateok' onsubmit='return validateForm()'>");
         pw.println("<div id=\"regbox\">");
         pw.println("<h1>도서 수정</h1>");
         pw.println("<input type='hidden' name='id' value='" + id + "'>");
@@ -133,7 +151,7 @@ public class UpdateServlet extends HttpServlet {
         pw.println("<label for='isbn'>ISBN</label>");
         pw.println("<input type='text' name='isbn' value='" + lib.getIsbn() + "'><br/>");
         pw.println("<label for='releaseYear'>출판 연도</label>");
-        pw.println("<input type='text' name='releaseYear' value='" + lib.getReleaseYear() + "'><br/>");
+        pw.println("<input type='number' name='releaseYear' value='" + lib.getReleaseYear() + "'><br/>");
         pw.println("<input type='hidden' name='count' value='" + lib.getCount() + "'>");
         pw.println("<label for='summary'>요약</label>");
         pw.println("<textarea name='summary'>" + lib.getSummary() + "</textarea><br/>");
